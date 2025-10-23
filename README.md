@@ -1,12 +1,26 @@
 🚀 EventHub - Projet Fil Rouge
 
-Bienvenue sur le dépôt du projet EventHub. Ce projet est mon "fil rouge" de ma formation. Je le construirai et l'améliorerai tout au long de l'année, semaine après semaine, en appliquant les différentes compétences acquises.
-
 L'objectif d'EventHub : Devenir une application web complète pour la gestion d'événements et de festivals, incluant la billetterie, la gestion des stocks, l'organisation des artistes, et plus encore.
 
-🏗️ État Actuel du Projet
+🏗️ Conventions de Commit
 
-Ce dépôt est organisé en branches thématiques correspondant à chaque module de formation. La branche main représente la version stable et consolidée du projet, tandis que les branches spécifiques (ex: devops1, secu2) contiennent les travaux en cours pour une semaine donnée.
+Pour maintenir un historique Git clair et lisible, ce projet utilise les Conventional Commits. Chaque message de commit doit être préfixé par un type :
+
+feat: Une nouvelle fonctionnalité (ex: feat: add user login page)
+
+fix: Une correction de bug (ex: fix: correct password validation)
+
+docs: Changements dans la documentation (ex: docs: update README with API info)
+
+style: Changements de style qui n'affectent pas la logique (ex: style: reformat code with prettier)
+
+refactor: Modification du code qui n'ajoute ni fonctionnalité ni ne corrige de bug (ex: refactor: simplify email service)
+
+test: Ajout ou modification de tests (ex: test: add unit tests for login)
+
+chore: Tâches diverses, maintenance, mise à jour de dépendances (ex: chore: update docker-compose version)
+
+perf: Amélioration des performances (ex: perf: optimize database query)
 
 🐳 [Semaine Actuelle : DevOps-1]
 
@@ -19,7 +33,3 @@ Objectif : Mettre en place un Proof of Concept (POC) de l'architecture de déplo
 Tout le travail spécifique à ce module se trouve sur la branche devops1.
 
 Pour vous y rendre et consulter les fichiers (Dockerfiles, docker-compose.yml, etc.), veuillez utiliser la commande suivante :
-
-git checkout devops1
-
-Une fois sur cette branche, vous pourrez suivre les instructions spécifiques à ce module (qui seront détaillées ici ou dans un README dédié à ce module) pour construire et lancer l'environnement conteneurisé.
