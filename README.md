@@ -28,8 +28,17 @@ Cette semaine est dédiée à l'introduction aux principes DevOps et à la conte
 
 Objectif : Mettre en place un Proof of Concept (POC) de l'architecture de déploiement d'EventHub avec Docker, en simulant le frontend et le backend.
 
-🔴 Voir le travail de cette semaine
+## 🚀 Démarrage Rapide
 
-Tout le travail spécifique à ce module se trouve sur la branche devops1.
+Pour lancer le projet en local, suivez ces étapes :
 
-Pour vous y rendre et consulter les fichiers (Dockerfiles, docker-compose.yml, etc.), veuillez utiliser la commande suivante :
+1.  **Cloner le dépôt :**
+
+2.  **Créer le fichier de configuration :**
+    Le projet utilise un fichier `.env` pour gérer les secrets (mots de passe de base de données, etc.). Un template est fourni.
+
+3.  **Lancer l'application (Docker) :**
+    docker compose up --build
+
+4.  **Accéder à l'application :**
+    Ouvrez votre navigateur à l'adresse `http://localhost:8080`.
