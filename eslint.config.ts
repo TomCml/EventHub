@@ -1,58 +1,66 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import reactPlugin from 'eslint-plugin-react';
 import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tseslint from 'typescript-eslint';
+// @ts-expect-error: Le module n'a pas de types
+import pluginReactConfig from 'eslint-plugin-react/configs/jsx-runtime.js';
 
-export default tseslint.config(
+export default [
   {
     ignores: [
       '**/node_modules/',
       '**/dist/',
-      '**/build/',
-      '.husky/',
-      '**/*.env',
+      '**/.husky/',
+      'backend/dist/',
+      'frontend/dist/',
     ],
   },
-
-  eslint.configs.recommended,
-
   {
-    files: ['frontend/src/**/*.{ts,tsx}', 'backend/src/**/*.{ts,tsx}'],
-    ...tseslint.configs.recommended,
-    plugins: {
-      '@typescript-eslint': tseslint.plugin,
-      react: reactPlugin,
-    },
     languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        ecmaFeatures: { jsx: true },
-        project: true,
-      },
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.es2021,
       },
     },
-    rules: {
-      'react/jsx-uses-react': 'off',
-      'react/react-in-jsx-scope': 'off',
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
     },
   },
 
-  {
-    files: ['*.{js,cjs,mjs,ts,cts,mts}'],
-    ...tseslint.configs.base,
+  pluginJs.configs.recommended,
+
+  ...tseslint.config({
+    files: ['frontend/src/**/*.tsx', 'backend/src/**/*.ts'],
+    extends: [...tseslint.configs.recommended, ...tseslint.configs.strict],
     languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {},
-      globals: {
-        ...globals.node,
-        module: 'readonly',
+      parserOptions: {
+        project: ['frontend/tsconfig.app.json', 'backend/tsconfig.json'],
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
-      '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
-  }
-);
+  }),
+
+  ...tseslint.config({
+    files: ['*.js', '*.ts'],
+    extends: [tseslint.configs.base],
+    languageOptions: {
+      globals: { module: 'readonly', require: 'readonly' },
+    },
+    rules: {
+      '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+    },
+  }),
+
+  {
+    files: ['frontend/src/**/*.tsx'],
+    ...pluginReactConfig,
+    rules: {
+      ...pluginReactConfig.rules,
+      'react/prop-types': 'off',
+    },
+  },
+];
