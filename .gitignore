@@ -19,9 +19,9 @@ build/
 #Environnement
 
 .env
-.env.*
-*.env
-postgres.env
+#.env.* for demo puposes
+#*.env
+
 
 #IDE
 

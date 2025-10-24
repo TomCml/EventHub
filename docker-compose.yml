@@ -14,7 +14,7 @@ services:
     ports:
       - '3001:3001'
     env_file:
-      - ./backend/.env
+      - ./.env.example
     depends_on:
       postgres:
         condition: service_started
@@ -23,7 +23,7 @@ services:
     image: postgres:16-alpine
     restart: always
     env_file:
-      - ./postgres/postgres.env
+      - ./.env.example
     ports:
       - '5432:5432'
     volumes:
